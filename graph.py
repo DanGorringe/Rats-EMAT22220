@@ -76,3 +76,15 @@ class Graph():
 
         # Save as the given fileString
         image.save(fileString)
+
+    # Return the number of defenders currently required by the graph
+    def defendersCheck(self):
+
+        defendersTotal = 0
+
+        for node in self.nodeList:
+
+            defendersTotal += len(node.diffOwnConnections())
+
+        # Return half as count the defenders form both sides of the edge
+        return int(defendersTotal/2)
