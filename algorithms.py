@@ -61,7 +61,9 @@ def WeirdPrims(graph):
     infectedList.remove(attackNode)
     graph.draw(1000,1000,'./test/'+format(1,'03d')+'.png')
 
-    totalDefenders += graph.defendersCheck()
+    # Check the number of defneders
+    totalDefenders += graph.defendersCheck(blue)
+    print(totalDefenders)
 
     # Options are the nodes that are directly connected to those eradicated
     options = attackNode.connections
@@ -86,11 +88,9 @@ def WeirdPrims(graph):
         # Draw the network and save it
         graph.draw(1000,1000,'./test/'+format(t+2,'03d')+'.png')
 
-        deltaDefenders = graph.defendersCheck()
-        totalDefenders += deltaDefenders
-        print(deltaDefenders)
-
-    print(totalDefenders)
+        # Check the number of defneders
+        totalDefenders += graph.defendersCheck(blue)
+        print(totalDefenders)
 
 ################
 # Look-forward #
@@ -119,8 +119,8 @@ def LookForward1Method(graph):
         infectedList.remove(attackNode)
         attackNode.ownership = blue
 
-        totalDefenders += graph.defendersCheck()
-        print(graph.defendersCheck())
+        totalDefenders += graph.defendersCheck(blue)
+        print(totalDefenders)
 
         # Draw the network and save it
         graph.draw(1000,1000,'./test/'+format(t+1,'03d')+'.png')
@@ -135,7 +135,7 @@ def LookForward1Method(graph):
     attackNode.ownership = blue
     graph.draw(1000,1000,'./test/'+format(len(graph.nodeList)-1,'03d')+'.png')
 
-    totalDefenders += graph.defendersCheck()
+    totalDefenders += graph.defendersCheck(blue)
 
     # Now choose the last node
     attackNode = infectedList[0]
@@ -145,6 +145,6 @@ def LookForward1Method(graph):
     graph.draw(1000,1000,'./test/'+format(len(graph.nodeList),'03d')+'.png')
 
 
-    totalDefenders += graph.defendersCheck()
+    totalDefenders += graph.defendersCheck(blue)
 
     print(totalDefenders)

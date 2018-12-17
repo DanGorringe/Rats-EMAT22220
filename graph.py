@@ -77,14 +77,13 @@ class Graph():
         # Save as the given fileString
         image.save(fileString)
 
-    # Return the number of defenders currently required by the graph
-    def defendersCheck(self):
+    # Return the number of defenders currently required by the graph, from ownership's perspective
+    def defendersCheck(self,ownership):
 
         defendersTotal = 0
 
         for node in self.nodeList:
+            if node.ownership != ownership:
+                defendersTotal += len(node.diffOwnConnections())
 
-            defendersTotal += len(node.diffOwnConnections())
-
-        # Return half as count the defenders form both sides of the edge
-        return int(defendersTotal/2)
+        return int(defendersTotal)
