@@ -1,7 +1,11 @@
 
-
+'''
 blue = (0,0,255)
 red = (255,0,0)
+'''
+
+blue = (102,221,170) # Medium aquamarine
+red = (255,125,0)    # orange
 
 # Return the node with the smallest change in defenders
 def lowestDefenderChoice(nodeList):
@@ -157,5 +161,45 @@ def LookForward1Method(graph,outputPath=None):
 
 
     totalDefenders += graph.defendersCheck(blue)
+
+    return(totalDefenders)
+
+#############
+# Kruskal's #
+#############
+
+def Kruskal(graph,outputPath=None):
+
+    for node in graph.nodeList:
+        node.ownership = red
+
+    if outputPath != None:
+        graph.draw(1000,1000,outputPath+format(0,'03d')+'.png')
+
+    # two simple lists to keep track
+    infectedList = list(graph.nodeList)
+    clearedList = []
+
+    totalDefenders = 0
+
+    # Main loop, only require as many steps as nodes
+    # as will clear a node each day
+
+    # can only go to t-2 days as looks forward
+
+    for t in range(len(graph.nodeList)):
+        # Choose node to attack
+        attackNode = lowestDefenderChoice(infectedList)
+        # Update each of our lists
+        clearedList.append(attackNode)
+        infectedList.remove(attackNode)
+        attackNode.ownership = blue
+
+        totalDefenders += graph.defendersCheck(blue)
+
+        # Draw the network and save it
+
+        if outputPath != None:
+            graph.draw(1000,1000,outputPath+format(t+1,'03d')+'.png')
 
     return(totalDefenders)

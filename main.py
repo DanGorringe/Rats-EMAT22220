@@ -6,8 +6,8 @@ import algorithms as al
 import csv
 
 
-blue = (0,0,255)
-red = (255,0,0)
+blue = (102,221,170)
+red = (255,125,0)
 
 # The csv file to load is a bit weird
 # think that you can only mention connections once
@@ -42,5 +42,7 @@ for edge in csvEdgeList:
     edgeList.append(edge2Add)
 
 graph1 = gp.Graph(nodeList,edgeList)
-al.LookForward1Method(graph1)
+answer = al.Kruskal(graph1,'./Test/')
+print(answer)
+#al.LookForward1Method(graph1,'./Test/')
 #al.WeirdPrims(graph1)

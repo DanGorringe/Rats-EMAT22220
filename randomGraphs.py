@@ -4,9 +4,13 @@ import graph as gp
 import algorithms as al
 
 import random
-
+'''
 blue = (0,0,255)
 red = (255,0,0)
+'''
+blue = (102,221,170) # Medium aquamarine
+red = (255,125,0)    # orange
+
 
 '''
 xMax = 4
@@ -106,7 +110,8 @@ for n in range(2,15):
         graph1 = RandoGraph(n)
         answerPrims = al.WeirdPrims(graph1)
         answerOther = al.LookForward1Method(graph1)
-        data.append([n*n,answerPrims,answerOther])
+        answerKruskals = al.Kruskal(graph1)
+        data.append([n*n,answerPrims,answerOther,answerKruskals])
 
 import csv
 
