@@ -43,9 +43,10 @@ def LookForward1(nodeListInput):
 # Will save a picture of the graoh at every stage
 # Also prints the totalDefenders days used
 
-def WeirdPrims(graph):
+def WeirdPrims(graph,outputPath=None):
 
-    graph.draw(1000,1000,'./test/'+format(0,'03d')+'.png')
+    if outputPath != None:
+        graph.draw(1000,1000,outputPath+format(0,'03d')+'.png')
 
     # two simple lists to keep track
     infectedList = list(graph.nodeList)
@@ -59,11 +60,11 @@ def WeirdPrims(graph):
     attackNode.ownership = blue
     clearedList.append(attackNode)
     infectedList.remove(attackNode)
-    graph.draw(1000,1000,'./test/'+format(1,'03d')+'.png')
+    if outputPath != None:
+        graph.draw(1000,1000,outputPath+format(1,'03d')+'.png')
 
     # Check the number of defneders
     totalDefenders += graph.defendersCheck(blue)
-    print(totalDefenders)
 
     # Options are the nodes that are directly connected to those eradicated
     options = attackNode.connections
@@ -86,19 +87,24 @@ def WeirdPrims(graph):
 
         attackNode.ownership = blue
         # Draw the network and save it
-        graph.draw(1000,1000,'./test/'+format(t+2,'03d')+'.png')
+        if outputPath != None:
+            graph.draw(1000,1000,outputPath+format(t+2,'03d')+'.png')
 
         # Check the number of defneders
         totalDefenders += graph.defendersCheck(blue)
-        print(totalDefenders)
+    return(totalDefenders)
 
 ################
 # Look-forward #
 ################
 
-def LookForward1Method(graph):
+def LookForward1Method(graph,outputPath):
 
-    graph.draw(1000,1000,'./test/'+format(0,'03d')+'.png')
+    for node in graph.nodeList:
+        node.ownership = red
+
+    if outputPath != None:
+        graph.draw(1000,1000,outputPath+format(0,'03d')+'.png')
 
     # two simple lists to keep track
     infectedList = list(graph.nodeList)
@@ -120,10 +126,11 @@ def LookForward1Method(graph):
         attackNode.ownership = blue
 
         totalDefenders += graph.defendersCheck(blue)
-        print(totalDefenders)
 
         # Draw the network and save it
-        graph.draw(1000,1000,'./test/'+format(t+1,'03d')+'.png')
+
+        if outputPath != None:
+            graph.draw(1000,1000,outputPath+format(t+1,'03d')+'.png')
 
 
 
@@ -133,7 +140,9 @@ def LookForward1Method(graph):
     clearedList.append(attackNode)
     infectedList.remove(attackNode)
     attackNode.ownership = blue
-    graph.draw(1000,1000,'./test/'+format(len(graph.nodeList)-1,'03d')+'.png')
+
+    if outputPath != None:
+        graph.draw(1000,1000,outputPath+format(len(graph.nodeList)-1,'03d')+'.png')
 
     totalDefenders += graph.defendersCheck(blue)
 
@@ -142,9 +151,11 @@ def LookForward1Method(graph):
     clearedList.append(attackNode)
     infectedList.remove(attackNode)
     attackNode.ownership = blue
-    graph.draw(1000,1000,'./test/'+format(len(graph.nodeList),'03d')+'.png')
+
+    if outputPath != None:
+        graph.draw(1000,1000,outputPath+format(len(graph.nodeList),'03d')+'.png')
 
 
     totalDefenders += graph.defendersCheck(blue)
 
-    print(totalDefenders)
+    return(totalDefenders)

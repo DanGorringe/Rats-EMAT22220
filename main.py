@@ -43,3 +43,4 @@ for edge in csvEdgeList:
 
 graph1 = gp.Graph(nodeList,edgeList)
 al.LookForward1Method(graph1)
+#al.WeirdPrims(graph1)
