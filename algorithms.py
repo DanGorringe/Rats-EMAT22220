@@ -98,7 +98,7 @@ def WeirdPrims(graph,outputPath=None):
 # Look-forward #
 ################
 
-def LookForward1Method(graph,outputPath):
+def LookForward1Method(graph,outputPath=None):
 
     for node in graph.nodeList:
         node.ownership = red
