@@ -44,7 +44,7 @@ def LookForward1(nodeListInput):
 ##############
 
 # Uses our prims-like algorithm to clear the input graph
-# Will save a picture of the graoh at every stage
+# Will save a picture of the graph at every stage
 # Also prints the totalDefenders days used
 
 def WeirdPrims(graph,outputPath=None):

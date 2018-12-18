@@ -12,7 +12,7 @@ blue = (102,221,170) # Medium aquamarine
 red = (255,125,0)    # orange
 
 
-'''
+
 xMax = 4
 yMax = 4
 
@@ -57,10 +57,13 @@ graph1.draw(10000,10000,'test.png')
 #al.LookForward1Method(graph1)
 answerPrims = al.WeirdPrims(graph1,'./TestPrim/')
 answerOther = al.LookForward1Method(graph1,'./TestOther/')
+answerKruksal = al.Kruskal(graph1,'./TestKruskal/')
 print(answerPrims)
 print(answerOther)
-'''
+print(answerKruksal)
 
+
+'''
 
 def RandoGraph(n):
     xMax = n
@@ -119,3 +122,4 @@ myFile = open('data.csv', 'w')
 with myFile:
    writer = csv.writer(myFile)
    writer.writerows(data)
+   '''

@@ -16,7 +16,7 @@ red = (255,125,0)
 nodeList = []
 csvEdgeList = []
 
-with open('./csvFiles/list1.csv','r') as csvfile1:
+with open('./csvFiles/list.csv','r') as csvfile1:
     csv = csv.reader(csvfile1,delimiter=',')
     i = 0
     for line in csv:
@@ -42,7 +42,8 @@ for edge in csvEdgeList:
     edgeList.append(edge2Add)
 
 graph1 = gp.Graph(nodeList,edgeList)
-answer = al.Kruskal(graph1,'./Test/')
-print(answer)
+graph1.draw(1000,1000,'./test.png')
+#answer = al.Kruskal(graph1,'./Test/')
+#print(answer)
 #al.LookForward1Method(graph1,'./Test/')
 #al.WeirdPrims(graph1)
