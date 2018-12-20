@@ -31,8 +31,8 @@ class Node():
     def attractivness(self):
         # Using the formulae: infected - defended
         # returns the change in defenders caused by choosing this node
-        infectedConnected = len(self.diffOwnConnections())
-        defendedConnected = len(self.connections) - infectedConnected
+        defendedConnected = len(self.diffOwnConnections())
+        infectedConnected = len(self.connections) - defendedConnected
         return(infectedConnected-defendedConnected)
 
 
