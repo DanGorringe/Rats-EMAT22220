@@ -10,12 +10,12 @@ red = (255,125,0)    # orange
 # Return the node with the smallest change in defenders
 def lowestDefenderChoice(nodeList):
     # Initial best value as just the total number of nodes
-    currentBest = -len(nodeList)
+    currentBest = len(nodeList)
     # Just set current best as the first
     currentBestNode = nodeList[0]
     for node in nodeList:
         defendersRequired = node.attractivness()
-        if defendersRequired > currentBest:
+        if defendersRequired < currentBest:
             currentBestNode = node
             currentBest = defendersRequired
     return currentBestNode
@@ -24,19 +24,25 @@ def lowestDefenderChoice(nodeList):
 def LookForward1(nodeListInput):
     currentBest = len(nodeListInput)
     currentBestNode = nodeListInput[0]
+    currentDefenders = len(nodeListInput)
+
     for node in nodeListInput:
         # Pretend this node has been added
         iterableList = list(nodeListInput)
         iterableList.remove(node)
+        nodeDefenders = node.attractivness()
         # Temporarily change ownership
         node.ownership = blue
         nodeBestNode = lowestDefenderChoice(iterableList)
-        nodeBest = node.attractivness() + nodeBestNode.attractivness()
+        nodeBest = nodeDefenders + nodeBestNode.attractivness()
         node.ownership = red
-        if nodeBest < currentBest:
-            currentBestNode = node
-            currentBest = nodeBest
+        if nodeBest <= currentBest:
+            if nodeDefenders < currentDefenders:
+                currentDefenders = nodeDefenders
+                currentBestNode = node
+                currentBest = nodeBest
     return(currentBestNode)
+
 
 
 ##############
