@@ -10,14 +10,13 @@ kruskalsData = values[:,3]
 
 primsPlt = plt.scatter(nData,primsData,alpha=0.5,color='#66DDAA')
 #otherPlt = plt.scatter(nData,otherData,alpha=1,color='#FF6600')
-#kruskalsPlt = plt.scatter(nData,kruskalsData,alpha=1,color='#FFAADD')
+lookForwardPlt = plt.scatter(nData,otherData,alpha=0.5,color='#FFAADD')
 kruskalsPlt = plt.scatter(nData,kruskalsData,alpha=0.5,color='#FF6600')
 
 #plt.rc('text', usetex=True)
 #plt.rc('font', family='serif')
 
-plt.legend((primsPlt,kruskalsPlt),('Prims','Kruskals'))
+plt.legend((primsPlt,kruskalsPlt,lookForwardPlt),('Initial Algorithm','Developed Algorithm','Look-forward'))
 plt.xlabel(r"Nodes in network")
 plt.ylabel(r"Total defending days")
-plt.show()
 plt.savefig('./Images/primsVsKruskals.png')

@@ -11,7 +11,7 @@ red = (255,0,0)
 blue = (102,221,170) # Medium aquamarine
 red = (255,125,0)    # orange
 
-
+'''
 
 xMax = 4
 yMax = 4
@@ -108,8 +108,8 @@ def RandoGraph(n):
 
 data = []
 
-for n in range(2,15):
-    for i in range(20):
+for n in range(2,20):
+    for i in range(15):
         graph1 = RandoGraph(n)
         answerPrims = al.WeirdPrims(graph1)
         answerOther = al.LookForward1Method(graph1)
@@ -122,4 +122,3 @@ myFile = open('data.csv', 'w')
 with myFile:
    writer = csv.writer(myFile)
    writer.writerows(data)
-   '''
